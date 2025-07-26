@@ -201,7 +201,8 @@ def chat():
             "ai_message_id": ai_message.id,
             "action": response_json['action'],
             "database_used": bool(db_response),
-            "data": db_response if db_response else None
+            "data": db_response if db_response else None,
+            "message" : f"Here are details for order #{db_response['order_id']}: {f"Status: {db_response['status']}\nCreated at: {db_response['created_at']}\nNumber of items: {db_response['num_items']}" if db_response else ''}"
         })
     except Exception as e:
         app.logger.error(f"Unhandled exception: {str(e)}")
